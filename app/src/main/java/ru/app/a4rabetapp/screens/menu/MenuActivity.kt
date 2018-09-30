@@ -6,6 +6,8 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.menu.*
 import ru.app.a4rabetapp.R
 import ru.app.a4rabetapp.base.BaseActivity
+import ru.app.a4rabetapp.screens.about.AboutActivity
+import ru.app.a4rabetapp.screens.results.ResultsActivity
 
 class MenuActivity: BaseActivity() {
 
@@ -18,7 +20,7 @@ class MenuActivity: BaseActivity() {
     }
 
     private fun onAboutClick() {
-
+        startActivity(Intent(this, AboutActivity::class.java))
     }
 
     private fun onChatClick() {
@@ -35,6 +37,6 @@ class MenuActivity: BaseActivity() {
     }
 
     private fun onResultsClick() {
-
+        startActivity(Intent(this, ResultsActivity::class.java))
     }
 }
