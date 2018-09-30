@@ -7,4 +7,5 @@
     <string name="about">О приложении</string>
     <string name="telegram">org.telegram.messenger</string>
     <string name="open_with">Открыть с помощью</string>
+    <string name="loading">Загрузка...</string>
 </resources>

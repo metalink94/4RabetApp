@@ -3,11 +3,14 @@ package ru.app.a4rabetapp.base
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import ru.app.a4rabetapp.R
 import ru.app.a4rabetapp.app.FourRabetApp
 import ru.app.a4rabetapp.network.ApiService
+import ru.app.a4rabetapp.views.ProgressView
 
-open class BaseActivity: AppCompatActivity() {
+open class BaseActivity : AppCompatActivity() {
 
     lateinit var apiService: ApiService
 
@@ -19,6 +22,7 @@ open class BaseActivity: AppCompatActivity() {
     fun getRemoteConfig(): FirebaseRemoteConfig {
         return (application as FourRabetApp).remoteConfig
     }
+
     fun isAppAvailable(appName: String): Boolean {
         val pm = packageManager
         return try {
@@ -26,6 +30,20 @@ open class BaseActivity: AppCompatActivity() {
             true
         } catch (e: PackageManager.NameNotFoundException) {
             false
+        }
+    }
+
+    fun showProgressView() {
+        val progressView = findViewById<ProgressView>(R.id.progressView)
+        if (progressView != null) {
+            progressView.visibility = View.VISIBLE
+        }
+    }
+
+    fun hideProgressView() {
+        val progressView = findViewById<ProgressView>(R.id.progressView)
+        if (progressView != null) {
+            progressView.visibility = View.GONE
         }
     }
 }
