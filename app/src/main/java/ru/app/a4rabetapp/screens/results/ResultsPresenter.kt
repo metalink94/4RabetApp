@@ -18,6 +18,7 @@ class ResultsPresenter : ViewPresenter<ResultsView>() {
                 .subscribeOn(Schedulers.io())
                 .subscribe({
                     Log.d("Presenter", "get size of list ${it.size}")
+                    getView()?.addItems(it)
                 }, { Log.e("Presenter", "Some error with request", it) }))
     }
 }
