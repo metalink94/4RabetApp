@@ -42,7 +42,8 @@ class FourRabetApp: Application() {
     private fun getDefaults(): Map<String, Any> {
         return mapOf(
                 Features.URL to "http://4rabet.com",
-                Features.COUNTRY_ISO_CODE to "IO"
+                Features.COUNTRY_ISO_CODE to "IO",
+                Features.CHAT_URL to "https://telegram.me/InfotechAvl_bot"
         )
     }
 }

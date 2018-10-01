@@ -2,6 +2,7 @@ package ru.app.a4rabetapp.screens.menu
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.menu.*
@@ -29,16 +30,8 @@ class MenuActivity: BaseActivity() {
     }
 
     private fun onChatClick() {
-        val appName = getString(R.string.telegram)
-        if (isAppAvailable(appName)) {
-            val myIntent = Intent(Intent.ACTION_SEND)
-            myIntent.type = "text/plain"
-            myIntent.`package` = appName
-            myIntent.putExtra(Intent.EXTRA_TEXT, "")//
-            startActivity(Intent.createChooser(myIntent, getString(R.string.open_with)))
-        } else {
-            Toast.makeText(this, "Telegram not Installed", Toast.LENGTH_SHORT).show()
-        }
+        val telegram = Intent(Intent.ACTION_VIEW, Uri.parse(getRemoteConfig().getString(Features.CHAT_URL)))
+        startActivity(telegram)
     }
 
     private fun onResultsClick() {
