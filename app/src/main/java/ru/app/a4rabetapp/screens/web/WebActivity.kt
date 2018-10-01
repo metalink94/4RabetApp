@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.main.*
 import ru.app.a4rabetapp.R
 import ru.app.a4rabetapp.app.FourRabetApp
 import ru.app.a4rabetapp.base.BaseActivity
+import ru.app.a4rabetapp.base.Features
 
 class WebActivity: BaseActivity() {
 
@@ -27,8 +28,8 @@ class WebActivity: BaseActivity() {
 
     private fun getUrl(): String {
         return if (application is FourRabetApp) {
-            Log.d("FourRabetApp", getRemoteConfig().getString("url"))
-            getRemoteConfig().getString("url")
+            Log.d("FourRabetApp", getRemoteConfig().getString(Features.URL))
+            getRemoteConfig().getString(Features.URL)
         } else {
             getString(R.string.url)
         }

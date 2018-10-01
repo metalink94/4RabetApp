@@ -7,8 +7,8 @@ import android.widget.RelativeLayout
 import ru.app.a4rabetapp.R
 
 class ProgressView
-constructor(context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0):
-        RelativeLayout(context, attributes, defStyleAttr) {
+@JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0):
+        RelativeLayout(context, attrs, defStyleAttr) {
 
     init {
         View.inflate(getContext(), R.layout.progress_view, this)

@@ -5,6 +5,7 @@ import android.util.Log
 import com.google.firebase.FirebaseApp
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import retrofit2.Retrofit
+import ru.app.a4rabetapp.base.Features
 import ru.app.a4rabetapp.network.ApiService
 import ru.app.a4rabetapp.network.RetrofitBuilder
 
@@ -40,7 +41,8 @@ class FourRabetApp: Application() {
 
     private fun getDefaults(): Map<String, Any> {
         return mapOf(
-                "url" to "http://4rabet.com"
+                Features.URL to "http://4rabet.com",
+                Features.COUNTRY_ISO_CODE to "IO"
         )
     }
 }
