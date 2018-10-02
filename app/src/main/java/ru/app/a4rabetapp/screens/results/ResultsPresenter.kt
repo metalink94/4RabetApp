@@ -11,7 +11,7 @@ class ResultsPresenter : ViewPresenter<ResultsView>() {
     lateinit var apiService: ApiService
 
     fun onCreate() {
-        unsubscribeOnDestroy(apiService.getResults("bash", 50)
+        unsubscribeOnDestroy(apiService.getResults()
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { getView()?.showProgress() }
                 .doOnTerminate { getView()?.hideProgress() }

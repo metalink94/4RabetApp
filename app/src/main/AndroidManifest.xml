@@ -13,7 +13,8 @@
         android:theme="@style/NoActionBar" >
 
         <activity android:name=".base.BaseActivity"/>
-        <activity android:name=".screens.menu.MenuActivity">
+        <activity android:name=".screens.menu.MenuActivity"
+            android:theme="@style/NoActionBar.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

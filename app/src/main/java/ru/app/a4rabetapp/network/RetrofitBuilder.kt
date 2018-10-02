@@ -8,7 +8,7 @@ object RetrofitBuilder {
 
     fun build(): Retrofit {
         return Retrofit.Builder()
-                .baseUrl("https://umorili.herokuapp.com") //Базовая часть адреса
+                .baseUrl("https://applemuch.ru") //Базовая часть адреса
                 .addConverterFactory(GsonConverterFactory.create()) //Конвертер, необходимый для преобразования JSON'а в объекты
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()

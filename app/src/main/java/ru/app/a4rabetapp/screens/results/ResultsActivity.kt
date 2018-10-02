@@ -7,7 +7,6 @@ import android.view.View
 import kotlinx.android.synthetic.main.results.*
 import ru.app.a4rabetapp.R
 import ru.app.a4rabetapp.base.BaseActivity
-import ru.app.a4rabetapp.models.PostModel
 import ru.app.a4rabetapp.screens.results.adapter.ResultsAdapterImpl
 import ru.app.a4rabetapp.screens.results.adapter.ResultsBuilder
 import ru.app.a4rabetapp.screens.results.adapter.ResultsBuilderImpl
@@ -57,7 +56,7 @@ class ResultsActivity : BaseActivity(), ResultsView, View.OnClickListener {
         hideProgressView()
     }
 
-    override fun addItems(it: List<PostModel>) {
+    override fun addItems(it: List<Any>) {
         adapter.addItems(it)
     }
 }

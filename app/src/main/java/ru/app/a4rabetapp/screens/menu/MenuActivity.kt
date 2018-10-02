@@ -18,6 +18,7 @@ import ru.app.a4rabetapp.screens.web.WebActivity
 class MenuActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.NoActionBar)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.menu)
         results.setOnClickListener { onResultsClick() }

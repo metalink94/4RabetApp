@@ -3,7 +3,7 @@ package ru.app.a4rabetapp.screens.results.adapter
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import ru.app.a4rabetapp.base.DelegateAdapter
-import ru.app.a4rabetapp.models.PostModel
+import ru.app.a4rabetapp.models.ResultModel
 
 class ResultsAdapter(val delegateAdapter: DelegateAdapter) : ResultsAdapterImpl {
 
@@ -68,7 +68,7 @@ class ResultsBuilder : ResultsBuilderImpl {
     }
 
     private fun addResultsDelegate() {
-        builder.addDelegate(PostModel::class.java, ResultDelegate())
+        builder.addDelegate(ResultModel::class.java, ResultDelegate())
     }
 
 }
