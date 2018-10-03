@@ -9,4 +9,10 @@
     <string name="open_with">Open with</string>
     <string name="loading">Loading...</string>
     <string name="about_app">Why it\'s free? We have been doing this business for a long time and now we have regular income. Our team consists of professional analysts who is ex-sports coaches or ex-sportsmens, so they analytics is twice efficient than those who wasn\'t related directly to the sport so they provide only the most precise forecasts. Also we can contact sportsmens that will reduce our risks to zero. Our forecasts are always reliable and safe so there won\'t be better chance to start winning now.</string>
+    <string name="telegram_title">Telegram</string>
+    <string name="whats_app">What\'s app</string>
+    <string name="mail">Mail</string>
+    <string name="telegram_url">\@4rabet</string>
+    <string name="whats_url">+7 960 300 00 00</string>
+    <string name="mail_url">mail@4rabet.com</string>
 </resources>

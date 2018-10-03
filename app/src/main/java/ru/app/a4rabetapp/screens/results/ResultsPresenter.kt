@@ -10,15 +10,21 @@ class ResultsPresenter : ViewPresenter<ResultsView>() {
 
     lateinit var apiService: ApiService
 
-    fun onCreate() {
+    fun onCreate(isNeedProgress: Boolean = true) {
         unsubscribeOnDestroy(apiService.getResults()
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { getView()?.showProgress() }
-                .doOnTerminate { getView()?.hideProgress() }
+                .doOnSubscribe { if (isNeedProgress) getView()?.showProgress() }
+                .doOnTerminate { if (isNeedProgress) getView()?.hideProgress() }
                 .subscribeOn(Schedulers.io())
                 .subscribe({
-                    Log.d("Presenter", "get size of list ${it.size}")
+                    getView()?.clearAdapter()
+                    getView()?.addTitle()
                     getView()?.addItems(it)
+                    getView()?.hideIndicator()
                 }, { Log.e("Presenter", "Some error with request", it) }))
+    }
+
+    fun onRefresh() {
+        onCreate(false)
     }
 }

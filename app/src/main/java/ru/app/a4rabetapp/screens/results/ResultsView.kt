@@ -7,5 +7,8 @@ interface ResultsView: IView {
     fun showProgress()
     fun hideProgress()
     fun addItems(it: List<Any>)
+    fun addTitle()
+    fun hideIndicator()
+    fun clearAdapter()
 
 }

@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.app.a4rabetapp">
+          package="ru.app.a4rabetapp"
+    >
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -10,18 +11,30 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/NoActionBar" >
+        android:theme="@style/NoActionBar"
+        >
 
         <activity android:name=".base.BaseActivity"/>
-        <activity android:name=".screens.menu.MenuActivity"
-            android:theme="@style/NoActionBar.Launcher">
+        <activity
+            android:name=".screens.menu.MenuActivity"
+            android:theme="@style/NoActionBar.Launcher"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".screens.web.WebActivity" />
-        <activity android:name=".screens.about.AboutActivity" />
-        <activity android:name=".screens.results.ResultsActivity" />
+        <activity android:name=".screens.web.WebActivity"/>
+        <activity
+            android:name=".screens.about.AboutActivity"
+            android:label=""
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".screens.results.ResultsActivity"
+            android:label=""
+            android:screenOrientation="portrait"
+            />
     </application>
 </manifest>

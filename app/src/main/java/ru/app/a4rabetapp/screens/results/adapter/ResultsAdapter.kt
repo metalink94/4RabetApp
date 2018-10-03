@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import ru.app.a4rabetapp.base.DelegateAdapter
 import ru.app.a4rabetapp.models.ResultModel
+import ru.app.a4rabetapp.models.TitleModel
 
 class ResultsAdapter(val delegateAdapter: DelegateAdapter) : ResultsAdapterImpl {
 
@@ -12,7 +13,7 @@ class ResultsAdapter(val delegateAdapter: DelegateAdapter) : ResultsAdapterImpl 
     }
 
     override fun addItems(items: List<*>) {
-        delegateAdapter.setItems(items)
+        delegateAdapter.addItems(items)
     }
 
     override fun clear() {
@@ -64,7 +65,12 @@ class ResultsBuilder : ResultsBuilderImpl {
 
     private fun createDelegateAdapter(): DelegateAdapter {
         addResultsDelegate()
+        addTitleDelegate()
         return builder.build()
+    }
+
+    private fun addTitleDelegate() {
+        builder.addDelegate(TitleModel::class.java, TitleDelegate())
     }
 
     private fun addResultsDelegate() {

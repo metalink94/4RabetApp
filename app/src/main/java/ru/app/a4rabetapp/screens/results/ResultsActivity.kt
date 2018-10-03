@@ -7,6 +7,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.results.*
 import ru.app.a4rabetapp.R
 import ru.app.a4rabetapp.base.BaseActivity
+import ru.app.a4rabetapp.models.TitleModel
 import ru.app.a4rabetapp.screens.results.adapter.ResultsAdapterImpl
 import ru.app.a4rabetapp.screens.results.adapter.ResultsBuilder
 import ru.app.a4rabetapp.screens.results.adapter.ResultsBuilderImpl
@@ -30,6 +31,10 @@ class ResultsActivity : BaseActivity(), ResultsView, View.OnClickListener {
         presenter.apiService = apiService
         presenter.setView(this)
         initRecycler()
+        swipeRefresh.setOnRefreshListener {
+            swipeRefresh.isRefreshing = true
+            presenter.onRefresh()
+        }
         presenter.onCreate()
     }
 
@@ -58,5 +63,17 @@ class ResultsActivity : BaseActivity(), ResultsView, View.OnClickListener {
 
     override fun addItems(it: List<Any>) {
         adapter.addItems(it)
+    }
+
+    override fun clearAdapter() {
+        adapter.clear()
+    }
+
+    override fun addTitle() {
+        adapter.addItem(0, TitleModel(getString(R.string.results)))
+    }
+
+    override fun hideIndicator() {
+        swipeRefresh.isRefreshing = false
     }
 }

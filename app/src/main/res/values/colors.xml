@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="divider">#ebebeb</color>
+    <color name="toolbar_color">#0087E7</color>
+    <color name="red">#33f44242</color>
+    <color name="green">#3331bc43</color>
+    <color name="white_row">#33ffffff</color>
 </resources>
