@@ -2,11 +2,11 @@
     <string name="app_name">4RabetApp</string>
     <string name="url">http://4rabet.com</string>
     <string name="url2">http://Saturn-bet.com</string>
-    <string name="results">Результаты</string>
-    <string name="chat">Чат</string>
-    <string name="about">О приложении</string>
+    <string name="results">Free forecasts</string>
+    <string name="chat">Chat</string>
+    <string name="about">About us</string>
     <string name="telegram">org.telegram.messenger</string>
-    <string name="open_with">Открыть с помощью</string>
-    <string name="loading">Загрузка...</string>
-    <string name="about_app">Наше приложение поможет тебе погрузиться в мир беттинга. И тп. и тд. Заходи к нам и узнавай самые точные прогнозы на спортивные события.</string>
+    <string name="open_with">Open with</string>
+    <string name="loading">Loading...</string>
+    <string name="about_app">Why it\'s free? We have been doing this business for a long time and now we have regular income. Our team consists of professional analysts who is ex-sports coaches or ex-sportsmens, so they analytics is twice efficient than those who wasn\'t related directly to the sport so they provide only the most precise forecasts. Also we can contact sportsmens that will reduce our risks to zero. Our forecasts are always reliable and safe so there won\'t be better chance to start winning now.</string>
 </resources>
