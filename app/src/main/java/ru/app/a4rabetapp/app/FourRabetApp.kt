@@ -43,7 +43,10 @@ class FourRabetApp: Application() {
         return mapOf(
                 Features.URL to "http://4rabet.com",
                 Features.COUNTRY_ISO_CODE to "IO",
-                Features.CHAT_URL to "https://telegram.me/InfotechAvl_bot"
+                Features.CHAT_URL to "https://telegram.me/onlybeti",
+                Features.SUPPORT to "@supp_4rabet",
+                Features.WHATS_APP to "7 960 300 00 00",
+                Features.MAIL to "mail@4rabet.com"
         )
     }
 }

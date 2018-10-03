@@ -66,14 +66,15 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
+                    android:orientation="vertical"
                     >
 
                     <TextView
                         android:id="@+id/telegram"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="left"
                         android:text="@string/telegram_title"
                         android:textColor="@color/toolbar_color"
                         android:textSize="@dimen/text_size_normal"
@@ -97,14 +98,15 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
+                    android:orientation="vertical"
                     >
 
                     <TextView
                         android:id="@+id/whats_app"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="@string/whats_app"
                         android:textColor="@color/toolbar_color"
                         android:textSize="@dimen/text_size_normal"
@@ -126,14 +128,15 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
+                    android:orientation="vertical"
                     >
 
                     <TextView
                         android:id="@+id/mail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="@string/mail"
                         android:textColor="@color/toolbar_color"
                         android:textSize="@dimen/text_size_normal"

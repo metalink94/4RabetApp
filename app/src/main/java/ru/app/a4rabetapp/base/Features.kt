@@ -5,4 +5,7 @@ object Features {
     const val URL = "url"
     const val COUNTRY_ISO_CODE = "countryIsoCode"
     const val CHAT_URL = "chat_url"
+    const val SUPPORT = "support"
+    const val WHATS_APP = "whats_app"
+    const val MAIL = "mail"
 }
