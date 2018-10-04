@@ -21,7 +21,11 @@ class ResultsPresenter : ViewPresenter<ResultsView>() {
                     getView()?.addTitle()
                     getView()?.addItems(it)
                     getView()?.hideIndicator()
-                }, { Log.e("Presenter", "Some error with request", it) }))
+                }, {
+                    getView()?.hideIndicator()
+                    getView()?.showError()
+                    Log.e("Presenter", "Some error with request", it)
+                }))
     }
 
     fun onRefresh() {

@@ -1,6 +1,7 @@
 package ru.app.a4rabetapp.screens.results
 
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import android.view.View
@@ -75,5 +76,13 @@ class ResultsActivity : BaseActivity(), ResultsView, View.OnClickListener {
 
     override fun hideIndicator() {
         swipeRefresh.isRefreshing = false
+    }
+
+    override fun showError() {
+        AlertDialog.Builder(this)
+                .setTitle(R.string.error)
+                .setMessage(R.string.error_message)
+                .setNegativeButton(R.string.ok) { dialogInterface, i -> }
+                .show()
     }
 }

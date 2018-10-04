@@ -16,4 +16,7 @@
     <string name="whats_url">+7 960 300 00 00</string>
     <string name="mail_url">mail@4rabet.com</string>
     <string name="telegram_me">https://telegram.me/</string>
+    <string name="error">Error</string>
+    <string name="error_message">Something wrong with our server or your internet connection. Try do this operation later</string>
+    <string name="ok">Ok</string>
 </resources>

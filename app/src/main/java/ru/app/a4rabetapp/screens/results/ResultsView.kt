@@ -10,5 +10,6 @@ interface ResultsView: IView {
     fun addTitle()
     fun hideIndicator()
     fun clearAdapter()
+    fun showError()
 
 }
