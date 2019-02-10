@@ -19,4 +19,7 @@
     <string name="error">Error</string>
     <string name="error_message">Something wrong with our server or your internet connection. Try do this operation later</string>
     <string name="ok">Ok</string>
+    <string name="key_first">url</string>
+    <string name="key_two">stub</string>
+    <string name="key_country">countryIso</string>
 </resources>

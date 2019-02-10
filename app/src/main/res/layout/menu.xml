@@ -46,4 +46,9 @@
         android:text="@string/about"
         />
 
+    <ru.app.a4rabetapp.views.ProgressView
+        android:id="@+id/progressView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </RelativeLayout>
