@@ -46,7 +46,8 @@ class FourRabetApp: Application() {
                 Features.CHAT_URL to "https://telegram.me/onlybeti",
                 Features.SUPPORT to "@supp_4rabet",
                 Features.WHATS_APP to "7 960 300 00 00",
-                Features.MAIL to "mail@4rabet.com"
+                Features.MAIL to "mail@4rabet.com",
+                Features.URL_NEED to false
         )
     }
 }

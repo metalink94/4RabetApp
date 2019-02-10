@@ -8,4 +8,5 @@ object Features {
     const val SUPPORT = "support"
     const val WHATS_APP = "whats_app"
     const val MAIL = "mail"
+    const val URL_NEED = "url_need"
 }

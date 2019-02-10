@@ -11,6 +11,7 @@ import ru.app.a4rabetapp.base.BaseActivity
 import ru.app.a4rabetapp.screens.about.AboutActivity
 import ru.app.a4rabetapp.screens.results.ResultsActivity
 import android.telephony.TelephonyManager
+import android.util.Log
 import ru.app.a4rabetapp.base.Features
 import ru.app.a4rabetapp.screens.web.WebActivity
 
@@ -36,7 +37,7 @@ class MenuActivity: BaseActivity() {
     }
 
     private fun onResultsClick() {
-        if (acceptResults()) {
+        if (!acceptResults() && getRemoteConfig().getBoolean(Features.URL_NEED)) {
             startActivity(Intent(this, ResultsActivity::class.java))
         } else {
             startActivity(Intent(this, WebActivity::class.java))
@@ -47,6 +48,7 @@ class MenuActivity: BaseActivity() {
         val tm = this.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         val countryCodeValue = tm.networkCountryIso
         val roaming = tm.isNetworkRoaming
+        Log.d("Menu", " countryCodeValue: $countryCodeValue, roaming $roaming, remote ${getRemoteConfig().getString(Features.COUNTRY_ISO_CODE).toLowerCase()}")
         return countryCodeValue.toLowerCase() != getRemoteConfig().getString(Features.COUNTRY_ISO_CODE).toLowerCase() && !roaming
     }
 }
