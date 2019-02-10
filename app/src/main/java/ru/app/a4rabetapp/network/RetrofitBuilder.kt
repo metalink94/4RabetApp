@@ -13,4 +13,12 @@ object RetrofitBuilder {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
     }
+
+    fun buildIp(): Retrofit {
+        return Retrofit.Builder()
+                .baseUrl("http://api.ipstack.com") //Базовая часть адреса
+                .addConverterFactory(GsonConverterFactory.create()) //Конвертер, необходимый для преобразования JSON'а в объекты
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
+    }
 }

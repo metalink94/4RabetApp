@@ -71,7 +71,9 @@ class MenuActivity: BaseActivity() {
         val countryCodeValue = tm.networkCountryIso
         val roaming = tm.isNetworkRoaming
         Log.d("Menu", " countryCodeValue: $countryCodeValue, " +
-                "roaming $roaming, remote ${countryIso?.toLowerCase()}")
+                "roaming $roaming, remote ${countryIso?.toLowerCase()}, user ip Adress ${Utils.getIPAddress(true)}")
+        val presenter = MenuPresenter(ipService)
+        presenter.checkIp()
         AlertDialog.Builder(this)
                 .setTitle("Check Country")
                 .setMessage("Your phoneCountry is ${tm.simCountryIso} your networkCountry is $countryCodeValue and you in roaming $roaming, get ip: ${Utils.getIPAddress(true)}")

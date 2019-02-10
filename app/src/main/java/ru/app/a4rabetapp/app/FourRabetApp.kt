@@ -7,13 +7,16 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import retrofit2.Retrofit
 import ru.app.a4rabetapp.base.Features
 import ru.app.a4rabetapp.network.ApiService
+import ru.app.a4rabetapp.network.IpService
 import ru.app.a4rabetapp.network.RetrofitBuilder
 
 class FourRabetApp: Application() {
 
     lateinit var remoteConfig: FirebaseRemoteConfig
     private val retrofit: Retrofit = RetrofitBuilder.build()
+    private val retrofitIp: Retrofit = RetrofitBuilder.buildIp()
     lateinit var apiService: ApiService
+    lateinit var ipService: IpService
 
     override fun onCreate() {
         FirebaseApp.initializeApp(this)
@@ -23,6 +26,7 @@ class FourRabetApp: Application() {
         fetch()
         super.onCreate()
         apiService = retrofit.create(ApiService::class.java)
+        ipService = retrofitIp.create(IpService::class.java)
     }
 
     private fun fetch() {

@@ -8,14 +8,18 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import ru.app.a4rabetapp.R
 import ru.app.a4rabetapp.app.FourRabetApp
 import ru.app.a4rabetapp.network.ApiService
+import ru.app.a4rabetapp.network.IpService
 import ru.app.a4rabetapp.views.ProgressView
 
 open class BaseActivity : AppCompatActivity() {
 
     lateinit var apiService: ApiService
 
+    lateinit var ipService: IpService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         apiService = (application as FourRabetApp).apiService
+        ipService = (application as FourRabetApp).ipService
         super.onCreate(savedInstanceState)
     }
 
