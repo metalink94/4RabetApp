@@ -10,7 +10,7 @@
     <item>
 
         <bitmap
-            android:src="@drawable/splash"/>
+            android:src="@drawable/ra_pattern_logo1"/>
 
     </item>
 

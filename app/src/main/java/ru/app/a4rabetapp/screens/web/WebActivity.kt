@@ -1,6 +1,7 @@
 package ru.app.a4rabetapp.screens.web
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -54,6 +55,7 @@ class WebActivity: BaseActivity() {
     }
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun initWebView() {
         webView.webChromeClient = object : WebChromeClient() {
 
@@ -123,7 +125,7 @@ class WebActivity: BaseActivity() {
         cookieManager.setAcceptCookie(true)
 
 //        webView.clearCache(true)
-        webView.clearHistory()
+//        webView.clearHistory()
         webView.setInitialScale(1)
         webView.settings.setAppCacheEnabled(true)
         webView.settings.javaScriptEnabled = true

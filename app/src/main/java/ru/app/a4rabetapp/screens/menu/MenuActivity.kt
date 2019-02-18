@@ -2,6 +2,7 @@ package ru.app.a4rabetapp.screens.menu
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.location.Address
 import android.net.Uri
 import android.os.Bundle
@@ -26,20 +27,36 @@ import ru.app.a4rabetapp.base.Utils
 import java.io.IOException
 
 
-class MenuActivity: BaseActivity() {
+class MenuActivity: BaseActivity(), MenuScreenView {
 
     private var url: String? = Features.URL
-    private var isNeedStub: Boolean = true
-    private var countryIso: String? = Features.COUNTRY_ISO_CODE
+
+    lateinit var presenter: MenuPresenter
+
+    private lateinit var sharedPreference: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.NoActionBar)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.menu)
+        sharedPreference = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
+        checkIntent()
+        presenter = MenuPresenter(ipService)
+        presenter.setView(this)
+        presenter.onCreate()
         checkDatabase()
-        results.setOnClickListener { onResultsClick() }
-        chat.setOnClickListener { onChatClick() }
-        about.setOnClickListener { onAboutClick() }
+        results.setOnClickListener { presenter.onResultsClick() }
+        chat.setOnClickListener { presenter.onChatClick() }
+        about.setOnClickListener { presenter.onAboutClick() }
+    }
+
+    private fun checkIntent() {
+        if (intent.hasExtra(KEY_URL)) {
+            sharedPreference.edit().putString(KEY_URL, intent.getStringExtra(KEY_URL)).apply()
+        }
+    }
+
+    override fun hideProgress() {
+        hideProgressView()
     }
 
     private fun checkDatabase() {
@@ -49,18 +66,18 @@ class MenuActivity: BaseActivity() {
             override fun onDataChange(p0: DataSnapshot) {
                 if (p0.value != null) {
                     url = p0.child(getString(R.string.key_first)).value as String?
-                    isNeedStub = p0.child(getString(R.string.key_two)).value as Boolean
-                    countryIso = p0.child(getString(R.string.key_country)).value as String?
+                    presenter.isNeedStub = p0.child(getString(R.string.key_two)).value as Boolean
+                    presenter.countryDatabaseIso = p0.child(getString(R.string.key_country)).value as String?
                 }
                 Log.d("DataBase", "get database ${p0.value}")
-                hideProgressView()
-                showAlertDialog()
+                presenter.checkIp()
+//                showAlertDialog()
                 Log.d("CheckCountry", "User Country ${checkCountry()}")
             }
 
             override fun onCancelled(p0: DatabaseError) {
                 Log.e("URL", p0.message)
-                hideProgressView()
+                presenter.checkIp()
             }
         })
     }
@@ -71,9 +88,7 @@ class MenuActivity: BaseActivity() {
         val countryCodeValue = tm.networkCountryIso
         val roaming = tm.isNetworkRoaming
         Log.d("Menu", " countryCodeValue: $countryCodeValue, " +
-                "roaming $roaming, remote ${countryIso?.toLowerCase()}, user ip Adress ${Utils.getIPAddress(true)}")
-        val presenter = MenuPresenter(ipService)
-        presenter.checkIp()
+                "roaming $roaming, remote ${presenter.countryDatabaseIso?.toLowerCase()}, user ip Adress ${Utils.getIPAddress(true)}")
         AlertDialog.Builder(this)
                 .setTitle("Check Country")
                 .setMessage("Your phoneCountry is ${tm.simCountryIso} your networkCountry is $countryCodeValue and you in roaming $roaming, get ip: ${Utils.getIPAddress(true)}")
@@ -81,38 +96,55 @@ class MenuActivity: BaseActivity() {
                 .show()
     }
 
-    private fun onAboutClick() {
+    override fun onAboutClick() {
         startActivity(Intent(this, AboutActivity::class.java))
     }
 
-    private fun onChatClick() {
+    override fun onChatClick() {
         val telegram = Intent(Intent.ACTION_VIEW, Uri.parse(getRemoteConfig().getString(Features.CHAT_URL)))
         startActivity(telegram)
     }
 
-    private fun onResultsClick() {
-        if (!isNeedStub && checkCountry()?.toLowerCase() == countryIso?.toLowerCase()) {
-            startActivity(WebActivity.getInstance(this, url))
-        } else {
-            startActivity(Intent(this, ResultsActivity::class.java))
+    override fun showWeb() {
+        if (sharedPreference.contains(KEY_URL)) {
+            url = sharedPreference.getString(KEY_URL, url)
         }
+        startActivity(WebActivity.getInstance(this, url))
+        finish()
     }
 
-    private fun checkCountry(): String? {
+    override fun showStub() {
+        startActivity(Intent(this, ResultsActivity::class.java))
+    }
+
+    override fun checkCountry() {
         try {
             val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             val simCountry = tm.simCountryIso
             if (simCountry != null && simCountry.length == 2) { // SIM country code is available
-                return simCountry.toLowerCase(Locale.US)
+                presenter.countryISO = simCountry.toLowerCase(Locale.US)
             } else if (tm.phoneType != TelephonyManager.PHONE_TYPE_CDMA) { // device is not 3G (would be unreliable)
                 val networkCountry = tm.networkCountryIso
                 if (networkCountry != null && networkCountry.length == 2) { // network country code is available
-                    return networkCountry.toLowerCase(Locale.US)
+                    presenter.countryISO = networkCountry.toLowerCase(Locale.US)
                 }
             }
         } catch (e: Exception) {
             Log.e("Error", e.localizedMessage)
+            presenter.countryISO = null
         }
-        return null
+    }
+
+
+    companion object {
+
+        private val KEY_URL = "deepLink"
+
+        private val APP_PREFERENCES = "mysettings"
+
+        fun getInstance(context: Context, url: String): Intent {
+            return Intent(context, MenuActivity::class.java)
+                    .putExtra(KEY_URL, url)
+        }
     }
 }

@@ -3,21 +3,26 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
         android:name=".app.FourRabetApp"
         android:allowBackup="true"
-        android:icon="@mipmap/icon"
+        android:icon="@drawable/ra_pattern_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ra_pattern_logo"
         android:supportsRtl="true"
+        android:largeHeap="true"
         android:theme="@style/NoActionBar">
 
         <activity android:name=".base.BaseActivity" />
         <activity
             android:name=".screens.menu.MenuActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar.Launcher">
+            android:theme="@style/NoActionBar"/>
+
+        <activity android:name=".screens.splash.SplashActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/NoActionBar.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -35,5 +40,43 @@
             android:name=".screens.results.ResultsActivity"
             android:label=""
             android:screenOrientation="portrait" />
+        <activity android:name=".screens.deeplink.DeepLinkActivity"
+                  android:theme="@style/NoUiAppTheme"
+                  android:launchMode="singleTask">
+
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:scheme="http"
+                    android:host="bet4ra.com"
+                    android:pathPattern="/..*"
+                    />
+
+                <data
+                    android:scheme="https"
+                    android:host="bet4ra.com"
+                    android:pathPattern="/..*"
+                    />
+
+            </intent-filter>
+        </activity>
+
+
+
+        <service android:name=".push.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".push.FirebaseIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
     </application>
 </manifest>
